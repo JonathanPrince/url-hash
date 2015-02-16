@@ -1,0 +1,33 @@
+{
+  "name": "url-hash",
+  "version": "0.0.1",
+  "description": "Node library to add hash parameter for tamper-free urls",
+  "main": "index.js",
+  "scripts": {
+    "test:dev": "testem .",
+    "test": "npm run jshint && mocha -R spec test/**/*.spec.js",
+    "jshint": "jshint ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/JonathanPrince/url-hash.git"
+  },
+  "keywords": [
+    "hash",
+    "url",
+    "security",
+    "parameters"
+  ],
+  "author": "Jonathan Prince <jonathan.prince@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/JonathanPrince/url-hash/issues"
+  },
+  "homepage": "https://github.com/JonathanPrince/url-hash",
+  "devDependencies": {
+    "expect.js": "^0.3.1",
+    "jshint": "^2.6.0",
+    "mocha": "^2.1.0",
+    "testem": "^0.7.0"
+  }
+}
