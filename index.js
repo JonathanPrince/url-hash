@@ -15,7 +15,9 @@ module.exports = {
 
   create: function(url){
 
-    var hash = crypto.createHash('sha256').update(url).digest('hex');
+    var urlObj = Url.parse(url);
+
+    var hash = crypto.createHash('sha256').update(urlObj.search).digest('hex');
 
     return url + '&hash=' + hash;
 
