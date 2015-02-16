@@ -17,6 +17,14 @@ describe('url-hash module', function(){
 
     });
 
+    it('should not change base url', function(){
+
+      var result = urlHash.create(baseUrl + queryString).indexOf(baseUrl);
+
+      expect(result).to.equal(0);
+
+    });
+
     it('should return a url with parameter: hash', function(){
 
       var hashedUrl = urlHash.create(baseUrl + queryString);
