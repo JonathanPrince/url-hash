@@ -2,6 +2,7 @@
 
 var urlHash = require('../index')
   , url     = require('url')
+  , crypto  = require('crypto')
   , expect  = require('expect.js');
 
 describe('url-hash module', function(){
@@ -46,6 +47,23 @@ describe('url-hash module', function(){
       var result = urlObject.query.hasOwnProperty('hash');
 
       expect(result).to.be(true);
+
+    });
+
+    it('hash parameter should be an sha256 hash of the url', function(){
+
+      var expectedHash = crypto
+                          .createHash('sha256')
+                          .update(queryString)
+                          .digest('hex');
+
+      var hashedUrl = urlHash.create(baseUrl + queryString);
+
+      var urlObject = url.parse(hashedUrl, true);
+
+      var result = urlObject.query.hash;
+
+      expect(result).to.equal(expectedHash);
 
     });
 
