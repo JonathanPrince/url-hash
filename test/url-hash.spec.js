@@ -9,6 +9,18 @@ describe('url-hash module', function(){
   var baseUrl = 'http://www.domain.com/page/';
   var queryString = '?id=4';
 
+  describe('urlHash.config', function(){
+
+    it('should allow salt to be changed', function(){
+
+      urlHash.config({salt: 'newSalt'});
+
+      expect(urlHash._salt).to.equal('newSalt');
+
+    });
+
+  });
+
   describe('urlHash.create', function(){
 
     it('should be a function', function(){
