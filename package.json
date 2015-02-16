@@ -29,5 +29,8 @@
     "jshint": "^2.6.0",
     "mocha": "^2.1.0",
     "testem": "^0.7.0"
+  },
+  "dependencies": {
+    "crypto": "0.0.3"
   }
 }
