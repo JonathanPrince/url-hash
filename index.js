@@ -24,7 +24,14 @@ module.exports = {
 
   check: function(url){
 
-    return true;
+    var hashIndex   = url.indexOf('&hash=');
+    var hash        = url.slice(hashIndex + 6);
+    var testUrl     = url.slice(0, hashIndex);
+    var testUrlHash = crypto.createHash('sha256')
+                            .update(testUrl + this._salt)
+                            .digest('hex');
+
+    return (hash === testUrlHash);
 
   }
 
