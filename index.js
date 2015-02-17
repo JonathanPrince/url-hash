@@ -1,7 +1,6 @@
 'use strict';
 
-var crypto = require('crypto')
-  , Url    = require('url');
+var crypto = require('crypto');
 
 module.exports = {
 
@@ -14,8 +13,6 @@ module.exports = {
   },
 
   create: function(url){
-
-    var urlObj = Url.parse(url, true);
 
     var hash = crypto.createHash('sha256')
                       .update(url + this._salt)
