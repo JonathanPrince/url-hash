@@ -54,7 +54,7 @@ describe('url-hash module', function(){
 
       var expectedHash = crypto
                           .createHash('sha256')
-                          .update(queryString)
+                          .update(baseUrl + queryString + urlHash._salt)
                           .digest('hex');
 
       var hashedUrl = urlHash.create(baseUrl + queryString);

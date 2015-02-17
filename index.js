@@ -15,11 +15,13 @@ module.exports = {
 
   create: function(url){
 
-    var urlObj = Url.parse(url);
+    var urlObj = Url.parse(url, true);
 
-    var hash = crypto.createHash('sha256').update(urlObj.search).digest('hex');
+    var hash = crypto.createHash('sha256')
+                      .update(url + this._salt)
+                      .digest('hex');
 
-    return url + '&hash=' + hash;
+    return url += '&hash=' + hash;
 
   },
 
