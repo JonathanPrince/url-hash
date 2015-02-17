@@ -69,4 +69,18 @@ describe('url-hash module', function(){
 
   });
 
+  describe('urlHash.check', function(){
+
+    it('should return true if the url is unchanged', function(){
+
+      var urlToCheck = urlHash.create(baseUrl + queryString);
+
+      var result = urlHash.check(urlToCheck);
+
+      expect(result).to.be(true);
+
+    });
+
+  });
+
 });
