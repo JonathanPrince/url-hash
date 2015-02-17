@@ -81,6 +81,18 @@ describe('url-hash module', function(){
 
     });
 
+    it('should return false if the url has been changed', function(){
+
+      var urlToCheck = urlHash.create(baseUrl + queryString);
+
+      urlToCheck = urlToCheck.replace('id=4', 'id=5');
+
+      var result = urlHash.check(urlToCheck);
+
+      expect(result).to.be(false);
+
+    });
+
   });
 
 });
