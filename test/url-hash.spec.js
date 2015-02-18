@@ -20,6 +20,14 @@ describe('url-hash module', function(){
 
     });
 
+    it('should allow hash parameter key to be changed', function(){
+
+      urlHash.config({hashKey: 'myHash'});
+
+      expect(urlHash._hashKey).to.equal('myHash');
+
+    });
+
   });
 
   describe('urlHash.create', function(){
@@ -44,7 +52,7 @@ describe('url-hash module', function(){
 
       var urlObject = url.parse(hashedUrl, true);
 
-      var result = urlObject.query.hasOwnProperty('hash');
+      var result = urlObject.query.hasOwnProperty(urlHash._hashKey);
 
       expect(result).to.be(true);
 
@@ -61,7 +69,7 @@ describe('url-hash module', function(){
 
       var urlObject = url.parse(hashedUrl, true);
 
-      var result = urlObject.query.hash;
+      var result = urlObject.query[urlHash._hashKey];
 
       expect(result).to.equal(expectedHash);
 
