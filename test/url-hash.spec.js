@@ -28,6 +28,16 @@ describe('url-hash module', function(){
 
     });
 
+    it('should be possible to set link expiry', function(){
+
+      var expiryTime = 60000;
+
+      urlHash.config({expire: expiryTime});
+
+      expect(urlHash._expire).to.equal(expiryTime);
+
+    });
+
   });
 
   describe('urlHash.create', function(){

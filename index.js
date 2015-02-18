@@ -6,11 +6,13 @@ module.exports = {
 
   _salt:    'def@au1t5a1t',
   _hashKey: 'hash',
+  _expire:  0,
 
   config: function(options){
 
     this._salt    = options.salt    || this._salt;
     this._hashKey = options.hashKey || this._hashKey;
+    this._expire  = options.expire  || this._expire;
 
   },
 
