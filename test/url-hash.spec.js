@@ -85,6 +85,18 @@ describe('url-hash module', function(){
 
     });
 
+    it('should add expire parameter if _expire has been set', function(){
+
+      urlHash.config({expire: 60000});
+
+      var testUrl = urlHash.create(baseUrl + queryString);
+
+      var result = testUrl.indexOf('&expire=60000');
+
+      expect(result).to.be.above(0);
+
+    });
+
   });
 
   describe('urlHash.check', function(){
