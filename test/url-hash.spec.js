@@ -40,6 +40,18 @@ describe('url-hash module', function(){
 
   });
 
+  describe('resetExpiry', function(){
+
+    it('should set _expire to 0', function(){
+
+      urlHash.resetExpiry();
+
+      expect(urlHash._expire).to.be(0);
+
+    });
+
+  });
+
   describe('urlHash.create', function(){
 
     it('should be a function', function(){
@@ -94,6 +106,18 @@ describe('url-hash module', function(){
       var result = testUrl.indexOf('&expire=60000');
 
       expect(result).to.be.above(0);
+
+    });
+
+    it('should not add expire parameter if _expire is 0', function(){
+
+      urlHash.resetExpiry();
+
+      var testUrl = urlHash.create(baseUrl + queryString);
+
+      var result = testUrl.indexOf('&expire=');
+
+      expect(result).to.be(-1);
 
     });
 

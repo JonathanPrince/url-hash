@@ -16,7 +16,19 @@ module.exports = {
 
   },
 
+  resetExpiry: function(){
+
+    this._expire = 0;
+
+  },
+
   create: function(url){
+
+    if (this._expire > 0) {
+
+      url += '&expire=' + this._expire;
+
+    }
 
     var hash = crypto.createHash('sha256')
                       .update(url + this._salt)
