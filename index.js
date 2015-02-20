@@ -24,9 +24,11 @@ module.exports = {
 
   create: function(url){
 
-    if (this._expire > 0) {
+    if (this._expire !== 0) {
 
-      url += '&expire=' + this._expire;
+      var expiry = Date.now() + this._expire;
+
+      url += '&expire=' + expiry;
 
     }
 
@@ -40,6 +42,7 @@ module.exports = {
 
   check: function(url){
 
+    var expired     = false;
     var hashIndex   = url.indexOf('&' + this._hashKey + '=');
     var hash        = url.slice(hashIndex + this._hashKey.length + 2);
     var testUrl     = url.slice(0, hashIndex);
@@ -47,7 +50,21 @@ module.exports = {
                             .update(testUrl + this._salt)
                             .digest('hex');
 
-    return (hash === testUrlHash);
+    if (this._expire !== 0){
+
+      var now      = Date.now();
+      var expIndex = url.indexOf('&expire=');
+      var expiry   = url.slice(expIndex + 8, hashIndex);
+
+      if (expiry < now){
+
+        expired = true;
+
+      }
+
+    }
+
+  return (hash === testUrlHash && expired === false);
 
   }
 
