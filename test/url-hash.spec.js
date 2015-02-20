@@ -170,6 +170,8 @@ describe('url-hash module', function(){
 
       expect(result).to.be(true);
 
+      urlHash.resetExpiry();
+
     });
 
   });
