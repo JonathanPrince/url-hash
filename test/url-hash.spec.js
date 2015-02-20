@@ -160,6 +160,18 @@ describe('url-hash module', function(){
 
     });
 
+    it('should return true if link has not expired', function(){
+
+      urlHash.config({expire: 250});
+
+      var urlToCheck = urlHash.create(baseUrl + queryString);
+
+      var result = urlHash.check(urlToCheck);
+
+      expect(result).to.be(true);
+
+    });
+
   });
 
 });
