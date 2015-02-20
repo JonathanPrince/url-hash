@@ -35,3 +35,21 @@ var result = urlHash.check(url/to/verify);
 
 */
 ```
+
+## Configuration options
+
+This library currently offers the following configuration options:
+
+- salt
+- expire
+- hash key name
+
+```js
+
+urlHash.config({
+                salt:    'someUniqueCustomSalt', // use custom salt (recommended)
+                expire:  60000,                  // url expires after 1 minute
+                hashKey: 'myCustomHashKeyName'   // use custom name for hash parameter
+              });
+
+```
