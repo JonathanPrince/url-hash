@@ -103,7 +103,7 @@ describe('url-hash module', function(){
 
       var testUrl = urlHash.create(baseUrl + queryString);
 
-      var result = testUrl.indexOf('&expire=60000');
+      var result = testUrl.indexOf('&expire=');
 
       expect(result).to.be.above(0);
 
@@ -149,13 +149,10 @@ describe('url-hash module', function(){
 
     it('should return false if link has expired', function(){
 
-      //  set expiry time to 1/4 second after creation
-      urlHash.config({expire: 250});
+      //  set expiry time to 1/4 second before creation
+      urlHash.config({expire: -250});
 
       var urlToCheck = urlHash.create(baseUrl + queryString);
-
-      // wait to let url expire
-      this.timeout(300);
 
       var result = urlHash.check(urlToCheck);
 
