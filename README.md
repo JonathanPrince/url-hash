@@ -10,7 +10,7 @@ Node library to add hash parameter for tamper-free urls
 // require library
 var urlHash = require('url-hash');
 
-var url = 'http://www.domain.com/page/?id=4';
+var url = 'http://www.example.com/page?id=4';
 
 // add hash to url
 var newUrl = urlHash.create(url);
