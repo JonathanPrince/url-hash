@@ -1,6 +1,11 @@
 # url-hash
 Node library to add hash parameter for tamper-free urls
 
+**NOTE:**
+This module is not intended for applications involving sensitive data.
+It provides a simple restriction to avoid tampering with url parameters,
+or to add a basic expiry time to a link.
+
 ## Basic Usage
 
 ### Add hash to url
