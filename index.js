@@ -7,12 +7,14 @@ module.exports = {
   _salt:    'def@au1t5a1t',
   _hashKey: 'hash',
   _expire:  0,
+  _expKey:  'expire',
 
   config: function(options){
 
     this._salt    = options.salt    || this._salt;
     this._hashKey = options.hashKey || this._hashKey;
     this._expire  = options.expire  || this._expire;
+    this._expKey  = options.expKey  || this._expKey;
 
   },
 
@@ -30,7 +32,7 @@ module.exports = {
 
       var expiry = Date.now() + this._expire;
 
-      url += '&expire=' + expiry;
+      url += '&' + this._expKey + '=' + expiry;
 
     }
 
@@ -55,7 +57,7 @@ module.exports = {
     if (this._expire !== 0){
 
       var now      = Date.now();
-      var expIndex = url.indexOf('&expire=');
+      var expIndex = url.indexOf('&' + this._expKey + '=');
       var expiry   = url.slice(expIndex + 8, hashIndex);
 
       if (expiry < now){
@@ -66,7 +68,7 @@ module.exports = {
 
     }
 
-  return (hash === testUrlHash && expired === false);
+    return (hash === testUrlHash && expired === false);
 
   }
 
