@@ -24,6 +24,8 @@ module.exports = {
 
   create: function(url){
 
+    var hash;
+
     if (this._expire !== 0) {
 
       var expiry = Date.now() + this._expire;
@@ -32,9 +34,9 @@ module.exports = {
 
     }
 
-    var hash = crypto.createHash('sha256')
-                      .update(url + this._salt)
-                      .digest('hex');
+    hash = crypto.createHash('sha256')
+                  .update(url + this._salt)
+                  .digest('hex');
 
     return url += '&' + this._hashKey + '=' + hash;
 
