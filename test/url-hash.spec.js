@@ -38,6 +38,16 @@ describe('url-hash module', function(){
 
     });
 
+    it('should allow expire parameter key to be changed', function(){
+
+      urlHash.config({expKey: 'myExpiry'});
+
+      expect(urlHash._expKey).to.equal('myExpiry');
+
+      urlHash.config({expKey: 'expire'});
+
+    });
+
   });
 
   describe('resetExpiry', function(){
