@@ -48,13 +48,15 @@ This library currently offers the following configuration options:
 - salt
 - expire
 - hash key name
+- expire key name
 
 ```js
 
 urlHash.config({
-                salt:    'someUniqueCustomSalt', // use custom salt (recommended)
+                salt:    'someUniqueCustomSalt', // use custom salt
                 expire:  60000,                  // url expires after 1 minute
-                hashKey: 'myCustomHashKeyName'   // use custom name for hash parameter
+                hashKey: 'myCustomHashKeyName',  // use custom name for hash parameter
+                expKey:  'myCustomExpiryName'    // custom name for expire parameter
               });
 
 ```
