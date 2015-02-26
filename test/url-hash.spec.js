@@ -137,9 +137,11 @@ describe('url-hash module', function(){
 
     it('should return true if the url is unchanged', function(){
 
-      var urlToCheck = urlHash.create(baseUrl + queryString);
+      var result, urlToCheck = urlHash.create(baseUrl + queryString);
 
-      var result = urlHash.check(urlToCheck);
+      urlHash.check(urlToCheck, function(res){
+        result = res;
+      });
 
       expect(result).to.be(true);
 
@@ -147,11 +149,13 @@ describe('url-hash module', function(){
 
     it('should return false if the url has been changed', function(){
 
-      var urlToCheck = urlHash.create(baseUrl + queryString);
+      var result, urlToCheck = urlHash.create(baseUrl + queryString);
 
       urlToCheck = urlToCheck.replace('id=4', 'id=5');
 
-      var result = urlHash.check(urlToCheck);
+      urlHash.check(urlToCheck, function(res){
+        result = res;
+      });
 
       expect(result).to.be(false);
 
@@ -162,9 +166,11 @@ describe('url-hash module', function(){
       //  set expiry time to 1/4 second before creation
       urlHash.config({expire: -250});
 
-      var urlToCheck = urlHash.create(baseUrl + queryString);
+      var result, urlToCheck = urlHash.create(baseUrl + queryString);
 
-      var result = urlHash.check(urlToCheck);
+      urlHash.check(urlToCheck, function(res){
+        result = res;
+      });
 
       expect(result).to.be(false);
 
@@ -174,9 +180,11 @@ describe('url-hash module', function(){
 
       urlHash.config({expire: 250});
 
-      var urlToCheck = urlHash.create(baseUrl + queryString);
+      var result, urlToCheck = urlHash.create(baseUrl + queryString);
 
-      var result = urlHash.check(urlToCheck);
+      urlHash.check(urlToCheck, function(res){
+        result = res;
+      });
 
       expect(result).to.be(true);
 
