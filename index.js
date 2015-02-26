@@ -44,7 +44,7 @@ module.exports = {
 
   },
 
-  check: function(url){
+  check: function(url, callback){
 
     var expired     = false;
     var hashIndex   = url.indexOf('&' + this._hashKey + '=');
@@ -68,7 +68,7 @@ module.exports = {
 
     }
 
-    return (hash === testUrlHash && expired === false);
+    callback(hash === testUrlHash && expired === false);
 
   }
 
