@@ -68,7 +68,15 @@ module.exports = {
 
     }
 
-    callback(hash === testUrlHash && expired === false);
+    if (callback) {
+
+      callback(hash === testUrlHash && expired === false);
+
+    } else {
+
+      return (hash === testUrlHash && expired === false);
+
+    }
 
   }
 
