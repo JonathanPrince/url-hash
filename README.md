@@ -30,7 +30,10 @@ var newUrl = urlHash.create(url);
 var urlHash = require('url-hash');
 
 // check integrity of url
-var result = urlHash.check(url/to/verify);
+var result;
+urlHash.check('url/to/verify', function(res){
+  result = res;
+});
 
 /*
 
