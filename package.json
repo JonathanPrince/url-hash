@@ -1,6 +1,6 @@
 {
   "name": "url-hash",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "description": "Node library to add hash parameter for tamper-free urls",
   "main": "index.js",
   "scripts": {
