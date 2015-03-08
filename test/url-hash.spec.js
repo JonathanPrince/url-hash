@@ -133,7 +133,7 @@ describe('url-hash module', function(){
 
   });
 
-  describe('urlHash.check', function(){
+  describe('urlHash.check without callback argument', function(){
 
     it('should return true if the url is unchanged', function(){
 
@@ -177,6 +177,67 @@ describe('url-hash module', function(){
       var urlToCheck = urlHash.create(baseUrl + queryString);
 
       var result = urlHash.check(urlToCheck);
+
+      expect(result).to.be(true);
+
+      urlHash.resetExpiry();
+
+    });
+
+  });
+
+  describe('urlHash.check with callback argument', function(){
+
+    it('should call callback(true) if the url is unchanged', function(){
+
+      var result, urlToCheck = urlHash.create(baseUrl + queryString);
+
+      urlHash.check(urlToCheck, function(res){
+        result = res;
+      });
+
+      expect(result).to.be(true);
+
+    });
+
+    it('should call callback(false) if the url has been changed', function(){
+
+      var result, urlToCheck = urlHash.create(baseUrl + queryString);
+
+      urlToCheck = urlToCheck.replace('id=4', 'id=5');
+
+      urlHash.check(urlToCheck, function(res){
+        result = res;
+      });
+
+      expect(result).to.be(false);
+
+    });
+
+    it('should call callback(false) if link has expired', function(){
+
+      //  set expiry time to 1/4 second before creation
+      urlHash.config({expire: -250});
+
+      var result, urlToCheck = urlHash.create(baseUrl + queryString);
+
+      urlHash.check(urlToCheck, function(res){
+        result = res;
+      });
+
+      expect(result).to.be(false);
+
+    });
+
+    it('should call callback(true) if link has not expired', function(){
+
+      urlHash.config({expire: 250});
+
+      var result, urlToCheck = urlHash.create(baseUrl + queryString);
+
+      urlHash.check(urlToCheck, function(res){
+        result = res;
+      });
 
       expect(result).to.be(true);
 

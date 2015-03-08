@@ -30,7 +30,7 @@ var newUrl = urlHash.create(url);
 var urlHash = require('url-hash');
 
 // check integrity of url
-var result = urlHash.check(url/to/verify);
+var result = urlHash.check('url/to/verify');
 
 /*
 
@@ -39,6 +39,12 @@ var result = urlHash.check(url/to/verify);
   2. equal false if the url has been changed
 
 */
+
+// check can also use a callback
+urlHash.check('url/to/verify', function(res){
+  result = res;
+});
+
 ```
 
 ## Configuration options
